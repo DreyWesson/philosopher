@@ -6,7 +6,7 @@
 /*   By: doduwole <doduwole@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 19:37:24 by doduwole          #+#    #+#             */
-/*   Updated: 2023/09/17 16:48:52 by doduwole         ###   ########.fr       */
+/*   Updated: 2023/09/17 19:07:11 by doduwole         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,55 +16,39 @@
  *	@todo
  * Check inputs and take care of errors
  */
-
-int	ft_error(char *message)
+void	init_data(char **argv, t_data *data)
 {
-	printf("\033[1;31m"
-			"Error\n"
-			"\033[0m");
-	printf("\033[3m\033[2;37m"
-			" %s\n"
-			"\033[0m",
-			message);
-	return (0);
-}
+	int	i;
 
-int	parse_number(char *str)
-{
-	char	tmp;
-
-	tmp = *str;
-	while (*str)
+	i = 1;
+	while (argv[i])
 	{
-		tmp = *str++;
-		if (tmp < 48 || tmp > 57)
-			return (2);
-	}
-	return (0);
-}
-
-void	validate_args(char **argv)
-{
-	while (*argv++)
-	{
-		if (*argv && parse_number(*argv))
-		{
-			ft_error("Invalid argument");
+		if (!*argv)
 			break ;
-		}
+		if (i == PHILO_NUM)
+			data->philo_num = ft_atoi(argv[PHILO_NUM]);
+		else if (i == DEATH_TIME)
+			data->death_time = ft_atoi(argv[DEATH_TIME]);
+		else if (i == EAT_TIME)
+			data->eat_time = ft_atoi(argv[EAT_TIME]);
+		else if (i == SLEEP_TIME)
+			data->sleep_time = ft_atoi(argv[SLEEP_TIME]);
+		i++;
 	}
-}
-
-int	validator(int argc, char **argv)
-{
-	if (!(argc == 6 || argc == 5))
-		return (ft_error("Too few arguments..."), 1);
-	validate_args(argv);
-	return (0);
+	if (argv[MEAL_NUM])
+		data->meals_num = ft_atoi(argv[MEAL_NUM]);
+	else
+		data->meals_num = 2147483647;
 }
 
 int	main(int argc, char **argv)
 {
-	validator(argc, argv);
+	t_data data;
+
+	if (validator(argc, argv))
+		return (1);
+	init_data(argv, &data);
+	printf("%d %llu %llu %llu %d\n", data.philo_num, data.death_time,
+		data.eat_time, data.sleep_time, data.meals_num);
 	return (0);
 }
