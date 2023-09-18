@@ -25,7 +25,7 @@ int	validate_value(long val, t_args type)
 	return (val);
 }
 
-void	init_data(char **argv, t_data *data)
+void	init_data(int argc, char **argv, t_data *data)
 {
 	int		i;
 	long	value;
@@ -39,19 +39,20 @@ void	init_data(char **argv, t_data *data)
 		if (i == PHILO_NUM && validate_value(value, PHILO_NUM))
 			data->philo_num = value;
 		else if (i == DEATH_TIME && validate_value(value, DEATH_TIME))
-			data->death_time = value;
+			data->death_time = (u_int64_t)value;
 		else if (i == EAT_TIME && validate_value(value, EAT_TIME))
-			data->eat_time = value;
+			data->eat_time = (u_int64_t)value;
 		else if (i == SLEEP_TIME && validate_value(value, SLEEP_TIME))
-			data->sleep_time = value;
+			data->sleep_time = (u_int64_t)value;
 		i++;
 	}
-	value = ft_atoi(argv[5]);
-	if (argv[MEAL_NUM] && validate_value(value, DEATH_TIME))
-		data->meals_num = value;
+	// printf("Testing\n");
+	if (argc == 6)
+	{
+		data->meals_num = validate_value(ft_atoi(argv[5]), DEATH_TIME);
+	}
 	else
 		data->meals_num = 2147483647;
-	// validate_value(data);
 }
 
 int	main(int argc, char **argv)
@@ -59,8 +60,8 @@ int	main(int argc, char **argv)
 	t_data data;
 
 	if (validator(argc, argv))
-		return (1);
-	init_data(argv, &data);
+		return (1);	
+	init_data(argc, argv, &data);
 	printf("%d %llu %llu %llu %d\n", data.philo_num, data.death_time,
 		data.eat_time, data.sleep_time, data.meals_num);
 	return (0);
