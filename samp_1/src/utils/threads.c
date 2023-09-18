@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   threads.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tterribi <tterribi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: doduwole <doduwole@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 17:56:39 by tterribi          #+#    #+#             */
-/*   Updated: 2022/10/24 11:20:34 by tterribi         ###   ########.fr       */
+/*   Updated: 2023/09/18 19:10:24 by doduwole         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	*monitor(void *data_pointer)
 
 	philo = (t_philo *) data_pointer;
 	pthread_mutex_lock(&philo->data->write);
-	printf("data val: %d", philo->data->dead);
+	// printf("data val: %d", philo->data->dead);
 	pthread_mutex_unlock(&philo->data->write);
 	while (philo->data->dead == 0)
 	{

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: doduwole <doduwole@student.42wolfsburg.    +#+  +:+       +#+         #
+#    By: doduwole <doduwole@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/05 19:34:40 by doduwole          #+#    #+#              #
-#    Updated: 2023/09/17 22:03:39 by doduwole         ###   ########.fr        #
+#    Updated: 2023/09/18 18:33:40 by doduwole         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ CC = gcc -g -pthread -fsanitize=address
 
 NONE='\033[0m'
 GREEN='\033[32m'
+RED='\033[31m'
 GRAY='\033[2;37m'
 CURSIVE='\033[3m'
 WARNING='\033[33m'
@@ -45,11 +46,11 @@ $(OBJ_DIR)/%.o: %.c
 
 clean:
 	@$(RM) $(OBJS) $(OBJ_DIR)
-	@echo $(CURSIVE)$(GRAY) "     - Object files removed" $(NONE)
+	@echo $(CURSIVE)$(RED) "     - Object files removed" $(NONE)
 
 fclean: clean
 	@rm -f $(NAME)
-	@echo $(CURSIVE)$(GRAY) "     - $(NAME) removed" $(NONE)
+	@echo $(CURSIVE)$(RED) "     - $(NAME) removed" $(NONE)
 
 re: fclean all
 

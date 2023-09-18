@@ -25,7 +25,7 @@ int	validate_value(long val, t_args type)
 	return (val);
 }
 
-int	init_data(char **argv, t_data *data)
+int set_args(char **argv, t_data *data)
 {
 	int		i;
 	long	value;
@@ -49,6 +49,13 @@ int	init_data(char **argv, t_data *data)
 			data->meals_num = ft_atoi(argv[5]);
 		i++;
 	}
+	return (1);
+}
+
+int	init_data(char **argv, t_data *data)
+{
+	if (!set_args(argv, data))
+		return (0);
 	return (1);
 }
 
