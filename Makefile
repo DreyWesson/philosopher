@@ -6,11 +6,11 @@
 #    By: doduwole <doduwole@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/05 19:34:40 by doduwole          #+#    #+#              #
-#    Updated: 2023/09/05 20:28:58 by doduwole         ###   ########.fr        #
+#    Updated: 2023/09/17 22:03:39 by doduwole         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = philosopher
+NAME = philo
 
 SRC =	$(wildcard *.c src/*.c src/*/*.c src/*/*/*.c src/*/*/*/*.c)
 

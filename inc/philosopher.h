@@ -6,7 +6,7 @@
 /*   By: doduwole <doduwole@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 19:44:36 by doduwole          #+#    #+#             */
-/*   Updated: 2023/09/17 18:53:37 by doduwole         ###   ########.fr       */
+/*   Updated: 2023/09/17 22:16:11 by doduwole         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct s_data
 	// pthread_mutex_t	write;
 }				t_data;
 
-enum			e_args
+typedef enum e_args
 {
 	PHILO_NUM = 1,
 	DEATH_TIME = 2,
@@ -43,7 +43,7 @@ enum			e_args
 	SLEEP_TIME = 4,
 	MEAL_NUM = 5
 
-};
+}				t_args;
 
 int				ft_error(char *message);
 int				parse_number(char *str);

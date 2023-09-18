@@ -6,7 +6,7 @@
 /*   By: doduwole <doduwole@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 19:37:24 by doduwole          #+#    #+#             */
-/*   Updated: 2023/09/17 19:07:11 by doduwole         ###   ########.fr       */
+/*   Updated: 2023/09/17 22:48:55 by doduwole         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,29 +16,42 @@
  *	@todo
  * Check inputs and take care of errors
  */
+int	validate_value(long val, t_args type)
+{
+	if (val == 0)
+		return (ft_error("Invalid value"), 0);
+	if (type == PHILO_NUM && val > 200)
+		return (ft_error("Too many philosophers"), 0);
+	return (val);
+}
+
 void	init_data(char **argv, t_data *data)
 {
-	int	i;
+	int		i;
+	long	value;
 
 	i = 1;
 	while (argv[i])
 	{
 		if (!*argv)
 			break ;
-		if (i == PHILO_NUM)
-			data->philo_num = ft_atoi(argv[PHILO_NUM]);
-		else if (i == DEATH_TIME)
-			data->death_time = ft_atoi(argv[DEATH_TIME]);
-		else if (i == EAT_TIME)
-			data->eat_time = ft_atoi(argv[EAT_TIME]);
-		else if (i == SLEEP_TIME)
-			data->sleep_time = ft_atoi(argv[SLEEP_TIME]);
+		value = ft_atoi(argv[i]);
+		if (i == PHILO_NUM && validate_value(value, PHILO_NUM))
+			data->philo_num = value;
+		else if (i == DEATH_TIME && validate_value(value, DEATH_TIME))
+			data->death_time = value;
+		else if (i == EAT_TIME && validate_value(value, EAT_TIME))
+			data->eat_time = value;
+		else if (i == SLEEP_TIME && validate_value(value, SLEEP_TIME))
+			data->sleep_time = value;
 		i++;
 	}
-	if (argv[MEAL_NUM])
-		data->meals_num = ft_atoi(argv[MEAL_NUM]);
+	value = ft_atoi(argv[5]);
+	if (argv[MEAL_NUM] && validate_value(value, DEATH_TIME))
+		data->meals_num = value;
 	else
 		data->meals_num = 2147483647;
+	// validate_value(data);
 }
 
 int	main(int argc, char **argv)
