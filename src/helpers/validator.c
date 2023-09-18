@@ -28,15 +28,11 @@ int	parse_number(char *str)
 int	validator(int argc, char **argv)
 {
 	if (!(argc == 6 || argc == 5))
-	{
 		return (ft_error("Too few arguments..."), 1);
-	}
 	while (*argv++)
 	{
 		if (*argv && parse_number(*argv))
-		{
 			return (ft_error("Invalid argument"), 2);
-		}
 	}
 	return (0);
 }
