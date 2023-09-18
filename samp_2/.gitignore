@@ -1,0 +1,9 @@
+# Object and archive files
+*.[ao]
+objs/
+
+# Executable
+philo/philo
+
+# Temporary files
+*.swp
