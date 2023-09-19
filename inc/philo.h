@@ -1,30 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philosopher.h                                      :+:      :+:    :+:   */
+/*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doduwole <doduwole@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: doduwole <doduwole@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 19:44:36 by doduwole          #+#    #+#             */
-/*   Updated: 2023/09/17 22:16:11 by doduwole         ###   ########.fr       */
+/*   Updated: 2023/09/19 18:26:40 by doduwole         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILOSOPHER_H
-# define PHILOSOPHER_H
+#ifndef PHILO_H
+# define PHILO_H
 
 # include <pthread.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 
+
+// typedef unsigned long long int	t_microsec;
+typedef u_int64_t	t_microsec;
+typedef pthread_mutex_t			t_mutex;
+
+typedef struct s_time
+{
+	t_microsec init;
+	t_microsec to_die;
+	t_microsec to_eat;
+	t_microsec to_sleep;
+}	t_time;
+
 typedef struct s_data
 {
 	int			philo_num;
-	u_int64_t	death_time;
-	u_int64_t	eat_time;
-	u_int64_t	sleep_time;
-	int			meals_num;
+	t_time		time;
+	int			min_meals;
+	t_mutex 	fork;
 	// u_int64_t	start_time;
 	// pthread_t		*tid;
 	// int				dead;

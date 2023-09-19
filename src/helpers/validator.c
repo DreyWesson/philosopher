@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   validator.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doduwole <doduwole@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: doduwole <doduwole@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 17:35:23 by doduwole          #+#    #+#             */
-/*   Updated: 2023/09/17 18:20:56 by doduwole         ###   ########.fr       */
+/*   Updated: 2023/09/19 17:23:27 by doduwole         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/philosopher.h"
+#include "../../inc/philo.h"
 
 int	parse_number(char *str)
 {

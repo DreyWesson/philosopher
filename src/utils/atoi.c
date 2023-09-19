@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   atoi.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doduwole <doduwole@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: doduwole <doduwole@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 18:14:09 by doduwole          #+#    #+#             */
-/*   Updated: 2023/09/17 18:14:32 by doduwole         ###   ########.fr       */
+/*   Updated: 2023/09/19 17:23:47 by doduwole         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/philosopher.h"
+#include "../../inc/philo.h"
 
 int	ft_atoi(const char *str)
 {

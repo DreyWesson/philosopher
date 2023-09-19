@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doduwole <doduwole@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: doduwole <doduwole@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 19:37:24 by doduwole          #+#    #+#             */
-/*   Updated: 2023/09/17 22:48:55 by doduwole         ###   ########.fr       */
+/*   Updated: 2023/09/19 17:39:24 by doduwole         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./inc/philosopher.h"
+#include "./inc/philo.h"
 
 /**
  *	@todo
@@ -31,7 +31,7 @@ int set_args(char **argv, t_data *data)
 	long	value;
 
 	i = 1;
-	data->meals_num = 2147483647;
+	data->min_meals = 2147483647;
 	while (argv[i])
 	{
 		value = validate_value(ft_atoi(argv[i]), i);
@@ -40,13 +40,13 @@ int set_args(char **argv, t_data *data)
 		if (i == PHILO_NUM)
 			data->philo_num = value;
 		else if (i == DEATH_TIME)
-			data->death_time = (u_int64_t)value;
+			data->time.to_die = (u_int64_t)value;
 		else if (i == EAT_TIME)
-			data->eat_time = (u_int64_t)value;
+			data->time.to_eat = (u_int64_t)value;
 		else if (i == SLEEP_TIME)
-			data->sleep_time = (u_int64_t)value;
+			data->time.to_sleep = (u_int64_t)value;
 		if ((i + 1) == 6)
-			data->meals_num = ft_atoi(argv[5]);
+			data->min_meals = ft_atoi(argv[5]);
 		i++;
 	}
 	return (1);
@@ -67,7 +67,7 @@ int	main(int argc, char **argv)
 		return (1);	
 	if (!init_data(argv, &data))
 		return (2);
-	printf("%d %llu %llu %llu %d\n", data.philo_num, data.death_time,
-		data.eat_time, data.sleep_time, data.meals_num);
+	printf("%d %llu %llu %llu %d\n", data.philo_num, data.time.to_die,
+		data.time.to_eat, data.time.to_sleep, data.min_meals);
 	return (0);
 }
