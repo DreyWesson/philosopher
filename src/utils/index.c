@@ -1,16 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   atoi.c                                             :+:      :+:    :+:   */
+/*   index.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: doduwole <doduwole@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/17 18:14:09 by doduwole          #+#    #+#             */
-/*   Updated: 2023/09/19 17:23:47 by doduwole         ###   ########.fr       */
+/*   Created: 2023/09/20 17:25:07 by doduwole          #+#    #+#             */
+/*   Updated: 2023/09/20 17:26:29 by doduwole         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/philo.h"
+
+int	is_digit(char *str)
+{
+	char	tmp;
+
+	while (*str)
+	{
+		tmp = *str++;
+		if (tmp < 48 || tmp > 57)
+			return (2);
+	}
+	return (0);
+}
 
 int	ft_atoi(const char *str)
 {
@@ -36,4 +49,16 @@ int	ft_atoi(const char *str)
 	if (is_neg == 1)
 		return (-nbr);
 	return (nbr);
+}
+
+int	ft_error(char *message)
+{
+	printf("\033[1;31m"
+			"Error\n"
+			"\033[0m");
+	printf("\033[3m\033[2;37m"
+			" %s\n"
+			"\033[0m",
+			message);
+	return (0);
 }

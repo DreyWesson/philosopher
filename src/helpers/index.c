@@ -1,25 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   index.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: doduwole <doduwole@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/17 17:47:36 by doduwole          #+#    #+#             */
-/*   Updated: 2023/09/19 17:23:19 by doduwole         ###   ########.fr       */
+/*   Created: 2023/09/20 17:26:57 by doduwole          #+#    #+#             */
+/*   Updated: 2023/09/20 17:30:56 by doduwole         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/philo.h"
 
-int	ft_error(char *message)
+int	validator(int argc, char **argv)
 {
-	printf("\033[1;31m"
-			"Error\n"
-			"\033[0m");
-	printf("\033[3m\033[2;37m"
-			" %s\n"
-			"\033[0m",
-			message);
+	if (!(argc == 6 || argc == 5))
+		return (ft_error("Too few arguments..."), 1);
+	while (*argv++)
+	{
+		if (*argv && is_digit(*argv))
+			return (ft_error("Invalid argument"), 2);
+	}
 	return (0);
+}
+
+int	validate_value(long val, t_args type)
+{
+	if (val == 0 && type != MEAL_NUM)
+		return (ft_error("Invalid value"), 0);
+	if (type == PHILO_NUM && val > 200)
+		return (ft_error("Too many philosophers"), 0);
+	return (val);
 }

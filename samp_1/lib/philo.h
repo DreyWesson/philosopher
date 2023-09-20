@@ -6,7 +6,7 @@
 /*   By: doduwole <doduwole@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 17:04:22 by tterribi          #+#    #+#             */
-/*   Updated: 2023/09/20 17:02:51 by doduwole         ###   ########.fr       */
+/*   Updated: 2023/09/20 17:49:46 by doduwole         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,12 @@
 # define DIED "died"
 
 struct	s_data;
+
+typedef struct s_hand
+{
+	t_mutex	*left;
+	t_mutex	*right;
+}	t_hand;
 
 typedef struct s_philo
 {

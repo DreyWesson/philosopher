@@ -6,7 +6,7 @@
 /*   By: doduwole <doduwole@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 19:44:36 by doduwole          #+#    #+#             */
-/*   Updated: 2023/09/20 17:08:19 by doduwole         ###   ########.fr       */
+/*   Updated: 2023/09/20 18:04:50 by doduwole         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,25 @@ typedef struct s_time
 	t_microsec	start_time;
 }	t_time;
 
+typedef struct s_hand
+{
+	t_mutex	*left;
+	t_mutex	*right;
+}	t_hand;
+
 typedef struct s_philo
 {
 	struct s_data	*data;
 	pthread_t		t1;
 	int				id;
-	int				eat_cont;
+	int				chow;
 	int				status;
 	int				eating;
-	uint64_t		time_to_die;
+	uint64_t		t_to_die;
 	t_mutex	lock;
-	t_mutex	*r_fork;
-	t_mutex	*l_fork;
+	t_hand hand;
+	// t_mutex	*r_fork;
+	// t_mutex	*l_fork;
 }	t_philo;
 
 typedef struct s_data
@@ -51,7 +58,7 @@ typedef struct s_data
 	int			philo_num;
 	t_time		time;
 	int			min_meals;
-	t_mutex 	fork;
+	// t_mutex 	fork;
 	int				dead;
 	int				done;
 	t_philo			*philos;
@@ -70,10 +77,22 @@ typedef enum e_args
 	MEAL_NUM = 5
 
 }				t_args;
-
+/**
+ * UTILS FUNCTIONS
+ */ 
 int				ft_error(char *message);
-int				parse_number(char *str);
-int				validator(int argc, char **argv);
+int				is_digit(char *str);
 int				ft_atoi(const char *str);
+/**
+* HELPER FUNCTIONS
+*/  
+int				validator(int argc, char **argv);
+int	validate_value(long val, t_args type);
+/**
+* INIT FUNCTIONS
+*/  
+int	init_data(char **argv, t_data *data);
+int set_args(char **argv, t_data *data);
+int	handle_memory(t_data *data);
 
 #endif
