@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doduwole <doduwole@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: doduwole <doduwole@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 19:44:36 by doduwole          #+#    #+#             */
-/*   Updated: 2023/09/20 09:26:10 by doduwole         ###   ########.fr       */
+/*   Updated: 2023/09/20 18:28:37 by doduwole         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,28 +53,48 @@ typedef struct s_philo
 
 typedef struct s_time
 {
-	t_microsec			init;
-	t_microsec			to_die;
-	t_microsec			to_eat;
-	t_microsec			to_sleep;
-}						t_time;
+	t_microsec init;
+	t_microsec to_die;
+	t_microsec to_eat;
+	t_microsec to_sleep;
+	t_microsec	start_time;
+}	t_time;
+
+typedef struct s_hand
+{
+	t_mutex	*left;
+	t_mutex	*right;
+}	t_hand;
+
+typedef struct s_philo
+{
+	struct s_data	*data;
+	pthread_t		t1;
+	int				id;
+	int				chow;
+	int				status;
+	int				eating;
+	uint64_t		t_to_die;
+	t_mutex	lock;
+	t_hand hand;
+	// t_mutex	*r_fork;
+	// t_mutex	*l_fork;
+}	t_philo;
 
 typedef struct s_data
 {
-	int					philo_num;
-	t_time				time;
-	int					min_meals;
-	t_mutex				*forks;
-	t_philo				*philos;
-	// u_int64_t	start_time;
-	// pthread_t		*tid;
-	// int				dead;
-	// int				finished;
-	// t_philo			*philos;
-	// pthread_mutex_t	*forks;
-	// pthread_mutex_t	lock;
-	// pthread_mutex_t	write;
-}						t_data;
+	int			philo_num;
+	t_time		time;
+	int			min_meals;
+	// t_mutex 	fork;
+	int				dead;
+	int				done;
+	t_philo			*philos;
+	pthread_t		*tid;
+	t_mutex	*forks;
+	t_mutex	lock;
+	t_mutex	write;
+}				t_data;
 
 typedef enum e_args
 {
@@ -84,11 +104,23 @@ typedef enum e_args
 	SLEEP_TIME = 4,
 	MEAL_NUM = 5
 
-}						t_args;
-
-int						ft_error(char *message);
-int						parse_number(char *str);
-int						validator(int argc, char **argv);
-int						ft_atoi(const char *str);
+}				t_args;
+/**
+ * UTILS FUNCTIONS
+ */ 
+int				ft_error(char *message);
+int				is_digit(char *str);
+int				ft_atoi(const char *str);
+/**
+* HELPER FUNCTIONS
+*/  
+int				validator(int argc, char **argv);
+int	validate_value(long val, t_args type);
+/**
+* INIT FUNCTIONS
+*/  
+int	init_data(char **argv, t_data *data);
+int set_args(char **argv, t_data *data);
+int	handle_memory(t_data *data);
 
 #endif
