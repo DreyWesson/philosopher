@@ -6,7 +6,7 @@
 /*   By: doduwole <doduwole@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 19:37:24 by doduwole          #+#    #+#             */
-/*   Updated: 2023/09/20 08:05:02 by doduwole         ###   ########.fr       */
+/*   Updated: 2023/09/20 09:20:06 by doduwole         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,24 +17,37 @@
  * Check inputs and take care of errors
  */
 
+int	handle_philo(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < data->philo_num)
+	{
+		data->philos = malloc(sizeof(t_philo));
+		data->philos->index = i + 1;
+		data->philos->meal_qtd = i + 1;
+		// data->philos->param = param;
+		data->philos++;
+	}
+}
+
 int	handle_forks(t_data *data)
 {
 	int	i;
 
 	i = 0;
-	data->forks = malloc(sizeof(t_mutex) * (data->philo_num + 1));
-	if (!data->forks)
-		return (0);
+	// data->forks = malloc(sizeof(t_mutex) * (data->philo_num + 1));
+	// if (!data->forks)
+	// 	return (0);
 	// (data->forks)[data->philo_num] = NULL;
 	while (i < data->philo_num)
 	{
 		data->forks = malloc(sizeof(t_mutex));
 		pthread_mutex_init(data->forks, NULL);
-		printf("Here\n");
 		data->forks++;
 		i++;
 	}
-	(void)data;
 	return (1);
 }
 

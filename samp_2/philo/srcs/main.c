@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doduwole <doduwole@student.42.fr>          +#+  +:+       +#+        */
+/*   By: doduwole <doduwole@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 20:25:04 by lfrasson          #+#    #+#             */
-/*   Updated: 2023/09/19 18:04:04 by doduwole         ###   ########.fr       */
+/*   Updated: 2023/09/20 09:23:06 by doduwole         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ static void	print_death(t_param param)
 {
 	if (no_one_died(&param))
 		return ;
-	printf("%d %d died\n",
-		delta_time(param.time.init, param.died.time),
+	printf("%d %d died\n", delta_time(param.time.init, param.died.time),
 		param.died.index);
 }
 
@@ -34,8 +33,7 @@ static void	print_ate_enough(t_param param)
 {
 	if (someone_died(&param))
 		return ;
-	printf("All Philosophers ate at least %d times\n",
-		param.must_eat);
+	printf("All Philosophers ate at least %d times\n", param.must_eat);
 }
 
 int	main(int argc, char **argv)
@@ -51,6 +49,7 @@ int	main(int argc, char **argv)
 	status = parse_input(argc, argv, &param);
 	if (status == FAIL)
 		return (status);
+	printf("%d\n", param.died.index);
 	initialize_structures(&philos, &forks, &param, param.number_of_philo);
 	start_routines(philos, &param.time.init);
 	print_death(param);
