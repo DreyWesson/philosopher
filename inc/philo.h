@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doduwole <doduwole@student.42.fr>          +#+  +:+       +#+        */
+/*   By: doduwole <doduwole@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 19:44:36 by doduwole          #+#    #+#             */
-/*   Updated: 2023/09/19 18:26:40 by doduwole         ###   ########.fr       */
+/*   Updated: 2023/09/20 08:04:51 by doduwole         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,25 +18,24 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-
 // typedef unsigned long long int	t_microsec;
-typedef u_int64_t	t_microsec;
-typedef pthread_mutex_t			t_mutex;
+typedef u_int64_t		t_microsec;
+typedef pthread_mutex_t	t_mutex;
 
 typedef struct s_time
 {
-	t_microsec init;
-	t_microsec to_die;
-	t_microsec to_eat;
-	t_microsec to_sleep;
-}	t_time;
+	t_microsec			init;
+	t_microsec			to_die;
+	t_microsec			to_eat;
+	t_microsec			to_sleep;
+}						t_time;
 
 typedef struct s_data
 {
-	int			philo_num;
-	t_time		time;
-	int			min_meals;
-	t_mutex 	fork;
+	int					philo_num;
+	t_time				time;
+	int					min_meals;
+	t_mutex				*forks;
 	// u_int64_t	start_time;
 	// pthread_t		*tid;
 	// int				dead;
@@ -45,7 +44,7 @@ typedef struct s_data
 	// pthread_mutex_t	*forks;
 	// pthread_mutex_t	lock;
 	// pthread_mutex_t	write;
-}				t_data;
+}						t_data;
 
 typedef enum e_args
 {
@@ -55,11 +54,11 @@ typedef enum e_args
 	SLEEP_TIME = 4,
 	MEAL_NUM = 5
 
-}				t_args;
+}						t_args;
 
-int				ft_error(char *message);
-int				parse_number(char *str);
-int				validator(int argc, char **argv);
-int				ft_atoi(const char *str);
+int						ft_error(char *message);
+int						parse_number(char *str);
+int						validator(int argc, char **argv);
+int						ft_atoi(const char *str);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doduwole <doduwole@student.42.fr>          +#+  +:+       +#+        */
+/*   By: doduwole <doduwole@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 19:37:24 by doduwole          #+#    #+#             */
-/*   Updated: 2023/09/19 17:39:24 by doduwole         ###   ########.fr       */
+/*   Updated: 2023/09/20 08:05:02 by doduwole         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,28 @@
  *	@todo
  * Check inputs and take care of errors
  */
+
+int	handle_forks(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	data->forks = malloc(sizeof(t_mutex) * (data->philo_num + 1));
+	if (!data->forks)
+		return (0);
+	// (data->forks)[data->philo_num] = NULL;
+	while (i < data->philo_num)
+	{
+		data->forks = malloc(sizeof(t_mutex));
+		pthread_mutex_init(data->forks, NULL);
+		printf("Here\n");
+		data->forks++;
+		i++;
+	}
+	(void)data;
+	return (1);
+}
+
 int	validate_value(long val, t_args type)
 {
 	if (val == 0 && type != MEAL_NUM)
@@ -25,7 +47,7 @@ int	validate_value(long val, t_args type)
 	return (val);
 }
 
-int set_args(char **argv, t_data *data)
+int	set_args(char **argv, t_data *data)
 {
 	int		i;
 	long	value;
@@ -56,6 +78,7 @@ int	init_data(char **argv, t_data *data)
 {
 	if (!set_args(argv, data))
 		return (0);
+	handle_forks(data);
 	return (1);
 }
 
@@ -64,10 +87,10 @@ int	main(int argc, char **argv)
 	t_data data;
 
 	if (validator(argc, argv))
-		return (1);	
+		return (1);
 	if (!init_data(argv, &data))
 		return (2);
-	printf("%d %llu %llu %llu %d\n", data.philo_num, data.time.to_die,
-		data.time.to_eat, data.time.to_sleep, data.min_meals);
+	// printf("%d %llu %llu %llu %d\n", data.philo_num, data.time.to_die,
+	// 	data.time.to_eat, data.time.to_sleep, data.min_meals);
 	return (0);
 }
