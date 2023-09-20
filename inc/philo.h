@@ -6,7 +6,7 @@
 /*   By: doduwole <doduwole@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 19:44:36 by doduwole          #+#    #+#             */
-/*   Updated: 2023/09/19 18:26:40 by doduwole         ###   ########.fr       */
+/*   Updated: 2023/09/20 17:08:19 by doduwole         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,22 @@ typedef struct s_time
 	t_microsec to_die;
 	t_microsec to_eat;
 	t_microsec to_sleep;
+	t_microsec	start_time;
 }	t_time;
+
+typedef struct s_philo
+{
+	struct s_data	*data;
+	pthread_t		t1;
+	int				id;
+	int				eat_cont;
+	int				status;
+	int				eating;
+	uint64_t		time_to_die;
+	t_mutex	lock;
+	t_mutex	*r_fork;
+	t_mutex	*l_fork;
+}	t_philo;
 
 typedef struct s_data
 {
@@ -37,14 +52,13 @@ typedef struct s_data
 	t_time		time;
 	int			min_meals;
 	t_mutex 	fork;
-	// u_int64_t	start_time;
-	// pthread_t		*tid;
-	// int				dead;
-	// int				finished;
-	// t_philo			*philos;
-	// pthread_mutex_t	*forks;
-	// pthread_mutex_t	lock;
-	// pthread_mutex_t	write;
+	int				dead;
+	int				done;
+	t_philo			*philos;
+	pthread_t		*tid;
+	t_mutex	*forks;
+	t_mutex	lock;
+	t_mutex	write;
 }				t_data;
 
 typedef enum e_args
