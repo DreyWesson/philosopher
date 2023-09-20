@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tterribi <tterribi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: doduwole <doduwole@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 17:00:13 by tterribi          #+#    #+#             */
-/*   Updated: 2022/10/24 11:29:43 by tterribi         ###   ########.fr       */
+/*   Updated: 2023/09/20 20:26:39 by doduwole         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ int	main(int argc, char **argv)
 		return (1);
 	if (init(&data, argv, argc))
 		return (1);
+		printf("%d\n", data.meals_nb);
+	exit(0);
 	if (data.philo_num == 1)
 		return (case_one(&data));
 	if (thread_init(&data))

@@ -6,7 +6,7 @@
 /*   By: doduwole <doduwole@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 19:44:36 by doduwole          #+#    #+#             */
-/*   Updated: 2023/09/20 18:28:37 by doduwole         ###   ########.fr       */
+/*   Updated: 2023/09/20 20:24:42 by doduwole         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <sys/time.h>
 
 // typedef unsigned long long int	t_microsec;
 typedef u_int64_t		t_microsec;
@@ -35,22 +36,6 @@ typedef struct s_died
 	t_microsec			time;
 }						t_died;
 
-typedef struct s_param
-{
-	t_died				died;
-	t_time				time;
-}						t_param;
-
-typedef struct s_philo
-{
-	int					index;
-	int					meal_qtd;
-	t_microsec			last_meal;
-	t_hand				hand;
-	t_pthread			thread;
-	t_param				*param;
-}						t_philo;
-
 typedef struct s_time
 {
 	t_microsec init;
@@ -60,11 +45,11 @@ typedef struct s_time
 	t_microsec	start_time;
 }	t_time;
 
-typedef struct s_hand
+typedef struct s_param
 {
-	t_mutex	*left;
-	t_mutex	*right;
-}	t_hand;
+	t_died				died;
+	t_time				time;
+}						t_param;
 
 typedef struct s_philo
 {
@@ -74,7 +59,7 @@ typedef struct s_philo
 	int				chow;
 	int				status;
 	int				eating;
-	uint64_t		t_to_die;
+	uint64_t		time_to_die;
 	t_mutex	lock;
 	t_hand hand;
 	// t_mutex	*r_fork;
@@ -86,7 +71,6 @@ typedef struct s_data
 	int			philo_num;
 	t_time		time;
 	int			min_meals;
-	// t_mutex 	fork;
 	int				dead;
 	int				done;
 	t_philo			*philos;
