@@ -6,7 +6,7 @@
 /*   By: doduwole <doduwole@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 17:19:38 by doduwole          #+#    #+#             */
-/*   Updated: 2023/09/20 20:00:38 by doduwole         ###   ########.fr       */
+/*   Updated: 2023/09/22 20:00:46 by doduwole         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,12 @@ void init_philos(t_data *data)
     int i;
 
     i = 0;
+	data->philos = malloc(sizeof(t_philo) * data->philo_num);
+	if (!data->philos)
+	{
+		ft_error("Malloc failed!");
+		return ;
+	}
     while (i < data->philo_num)
     {
         data->philos[i].id = i + 1;
@@ -35,6 +41,12 @@ void init_forks(t_data *data)
     int i;
 
     i = 0;
+	data->forks = malloc(sizeof(pthread_mutex_t) * data->philo_num);
+	if (!data->forks)
+	{
+		ft_error("Malloc failed!");
+		return ;
+	}
     while (i < data->philo_num)
     {
 		/// @note: error checker here
@@ -53,20 +65,21 @@ void init_forks(t_data *data)
     }
 }
 
-int	handle_memory(t_data *data)
+int	set_memory(t_data *data)
 {
 	/// @note: error checker here
-	pthread_mutex_init(&data->write, NULL);
-	pthread_mutex_init(&data->lock, NULL);
-	data->tid = malloc(sizeof(pthread_t) * data->philo_num);
-	if (!data->tid)
-		return (ft_error("Malloc failed!"), 0);
-	data->philos = malloc(sizeof(t_philo) * data->philo_num);
-	if (!data->philos)
-		return (ft_error("Malloc failed!"), 0);
-	data->forks = malloc(sizeof(pthread_mutex_t) * data->philo_num);
-	if (!data->forks)
-		return (ft_error("Malloc failed!"), 0);
+	// pthread_mutex_init(&data->write, NULL);
+	// pthread_mutex_init(&data->lock, NULL);
+	// data->tid = malloc(sizeof(pthread_t) * data->philo_num);
+	// if (!data->tid)
+	// 	return (ft_error("Malloc failed!"), 0);
+	// data->philos = malloc(sizeof(t_philo) * data->philo_num);
+	// if (!data->philos)
+	// 	return (ft_error("Malloc failed!"), 0);
+	// data->forks = malloc(sizeof(pthread_mutex_t) * data->philo_num);
+	// if (!data->forks)
+	// 	return (ft_error("Malloc failed!"), 0);
+	(void)data;
 	return (1);
 }
 
@@ -101,9 +114,11 @@ int set_args(char **argv, t_data *data)
 
 int	init_data(char **argv, t_data *data)
 {
-	if (!set_args(argv, data) || !handle_memory(data))
+	if (!set_args(argv, data) || !set_memory(data))
 		return (0);
-    init_forks(data);
+	pthread_mutex_init(&data->write, NULL);
+	pthread_mutex_init(&data->lock, NULL);
 	init_philos(data);
+    init_forks(data);
 	return (1);
 }

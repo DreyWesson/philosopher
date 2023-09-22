@@ -6,15 +6,11 @@
 /*   By: doduwole <doduwole@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 19:37:24 by doduwole          #+#    #+#             */
-/*   Updated: 2023/09/22 19:30:38 by doduwole         ###   ########.fr       */
+/*   Updated: 2023/09/22 19:56:50 by doduwole         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./inc/philo.h"
-
-t_microsec	get_time(void);
-void	messages(char *str, t_philo *philo);
-
 
 int single_philo(t_data *data)
 {
@@ -36,6 +32,7 @@ int	main(int argc, char **argv)
 		return (1);
 	if (!init_data(argv, &data))
 		return (2);
+
 	if (data.philo_num == 1)
 		return (single_philo(&data));
 	if (init_thread(&data))
