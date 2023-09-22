@@ -6,7 +6,7 @@
 /*   By: doduwole <doduwole@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 19:44:36 by doduwole          #+#    #+#             */
-/*   Updated: 2023/09/20 20:24:42 by doduwole         ###   ########.fr       */
+/*   Updated: 2023/09/22 19:29:27 by doduwole         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,5 +106,21 @@ int	validate_value(long val, t_args type);
 int	init_data(char **argv, t_data *data);
 int set_args(char **argv, t_data *data);
 int	handle_memory(t_data *data);
+
+int	init_thread(t_data *data);
+void	*monitor(void *data_pointer);
+t_microsec	get_time(void);
+void	*routine(void *philo_pointer);
+void	*supervisor(void *philo_pointer);
+int	ft_strcmp(char *s1, char *s2);
+int	ft_sleep(useconds_t time);
+void	take_forks(t_philo *philo);
+void	drop_forks(t_philo *philo);
+void	eat(t_philo *philo);
+void	messages(char *str, t_philo *philo);
+
+void	ft_exit(t_data *data);
+void	clear_data(t_data	*data);
+
 
 #endif

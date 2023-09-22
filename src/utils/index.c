@@ -6,7 +6,7 @@
 /*   By: doduwole <doduwole@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 17:25:07 by doduwole          #+#    #+#             */
-/*   Updated: 2023/09/20 17:26:29 by doduwole         ###   ########.fr       */
+/*   Updated: 2023/09/22 19:20:48 by doduwole         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,16 @@ int	is_digit(char *str)
 			return (2);
 	}
 	return (0);
+}
+
+int	ft_strcmp(char *s1, char *s2)
+{
+	while (*s1 != '\0' && (*s1 == *s2))
+	{
+		s1++;
+		s2++;
+	}
+	return (*(char *)s1 - *(char *)s2);
 }
 
 int	ft_atoi(const char *str)

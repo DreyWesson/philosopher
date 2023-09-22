@@ -2,6 +2,7 @@
     "files.associations": {
         "*.ejs": "html",
         "philosopher.h": "c",
-        "__locale": "c"
+        "__locale": "c",
+        "philo.h": "c"
     }
 }
